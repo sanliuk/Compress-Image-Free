@@ -5,7 +5,7 @@
 ![GUI](https://img.shields.io/badge/GUI-Tkinter/CustomTkinter-orange.svg)
 
 A simple desktop application for compressing JPEG/PNG images while maintaining their dimensions, built with Python and CustomTkinter.
-
+I made this tool for my You Tube thumbnails. Feel free to use it and make any change you wish.
 ## Features
 
 - Select any JPG, JPEG, or PNG image file
