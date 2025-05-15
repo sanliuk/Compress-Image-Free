@@ -26,4 +26,4 @@ A simple desktop application for compressing JPEG/PNG images while maintaining t
 1. Clone the repository:
    ```bash
    git clone https://github.com/sanliuk/Compress-Image-Free.git
-   cd image-compressor
+   cd Compress-Image-Free
