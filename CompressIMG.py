@@ -3,7 +3,6 @@ from tkinter import filedialog
 from PIL import Image
 import customtkinter as ctk
 
-# Initialize the interface
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
@@ -12,11 +11,8 @@ class ImageCompressorApp(ctk.CTk):
         super().__init__()
         self.title("Image Compressor")
         self.geometry("500x300")
-
         self.selected_image_path = None
         self.compressed_image = None
-        self.compressed_size_label = None
-
         self.create_widgets()
 
     def create_widgets(self):
@@ -41,13 +37,11 @@ class ImageCompressorApp(ctk.CTk):
     def compress_image(self):
         if not self.selected_image_path:
             return
-
         img = Image.open(self.selected_image_path)
-
-        # Compress the image while maintaining dimensions and reducing quality
+        if img.mode in ("RGBA", "P"):
+            img = img.convert("RGB")
         output_path = "compressed_temp.jpg"
         img.save(output_path, "JPEG", quality=40, optimize=True)
-
         self.compressed_image = output_path
         size_kb = os.path.getsize(output_path) // 1024
         self.size_label.configure(text=f"Compressed Image Size: {size_kb} KB")
@@ -56,7 +50,6 @@ class ImageCompressorApp(ctk.CTk):
     def save_image(self):
         if not self.compressed_image:
             return
-
         save_path = filedialog.asksaveasfilename(defaultextension=".jpg",
                                                  filetypes=[("JPEG", "*.jpg")])
         if save_path:
@@ -66,5 +59,3 @@ class ImageCompressorApp(ctk.CTk):
 if __name__ == "__main__":
     app = ImageCompressorApp()
     app.mainloop()
-# This code is a simple image compressor GUI application using Tkinter and PIL.
-# It allows users to select an image, compress it, and save the compressed version.
